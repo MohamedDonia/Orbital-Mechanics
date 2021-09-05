@@ -1,0 +1,488 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17001,        480]
+NotebookOptionsPosition[     15861,        450]
+NotebookOutlinePosition[     16209,        465]
+CellTagsIndexPosition[     16166,        462]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Stump Function   ", "Section",
+ CellChangeTimes->{{3.720889142369573*^9, 3.720889178061322*^9}, {
+  3.7209247085996537`*^9, 
+  3.720924714645258*^9}},ExpressionUUID->"520a2d24-fd90-492f-b058-\
+2261ea4d34e4"],
+
+Cell[CellGroupData[{
+
+Cell["Implementation Of Stump Functions", "Subsection",
+ CellChangeTimes->{
+  3.7208893062876244`*^9},ExpressionUUID->"44f62e7d-b63a-4325-9f3a-\
+d70d9986811c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Implementation", " ", "of", " ", "stump", " ", "function", " ", "using", 
+    " ", "series", " ", "expansion"}], "  ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["S", "series"], "[", 
+      RowBox[{"z_", ",", "n_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"Sum", "[", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"-", "1"}], ")"}], "k"], "*", 
+         FractionBox[
+          SuperscriptBox["z", "k"], 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"2", " ", "k"}], "+", "3"}], ")"}], "!"}]]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "0", ",", "n"}], "}"}]}], "]"}], "//", "N"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["C", "series"], "[", 
+      RowBox[{"z_", ",", "n_"}], "]"}], ":=", 
+     RowBox[{"Sum", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"-", "1"}], ")"}], "k"], "*", 
+        FractionBox[
+         SuperscriptBox["z", "k"], 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"2", "k"}], "+", "2"}], ")"}], "!"}]]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "0", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Implementation", " ", "of", " ", "sump", " ", "function", " ", "using", 
+     " ", "closed", " ", "form", " ", "trigometric", " ", "functions"}], " ", 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["S", "exact"], "[", "z_", "]"}], ":=", 
+     RowBox[{
+      RowBox[{"Which", "[", 
+       RowBox[{
+        RowBox[{"z", ">", "0"}], ",", 
+        FractionBox[
+         RowBox[{
+          SqrtBox["z"], "-", 
+          RowBox[{"Sin", "[", 
+           SqrtBox["z"], "]"}]}], 
+         SuperscriptBox[
+          RowBox[{"(", 
+           SqrtBox["z"], ")"}], "3"]], ",", 
+        RowBox[{"z", "<", "0"}], ",", 
+        FractionBox[
+         RowBox[{
+          RowBox[{"Sinh", "[", 
+           SqrtBox[
+            RowBox[{"-", "z"}]], "]"}], "-", 
+          SqrtBox[
+           RowBox[{"-", "z"}]]}], 
+         SuperscriptBox[
+          RowBox[{"(", 
+           SqrtBox[
+            RowBox[{"-", "z"}]], ")"}], "3"]], ",", 
+        RowBox[{"z", "==", "0"}], ",", 
+        FractionBox["1", "6"]}], "]"}], "//", "N"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["C", "exact"], "[", "z_", "]"}], ":=", 
+     RowBox[{"Which", "[", 
+      RowBox[{
+       RowBox[{"z", ">", "0"}], ",", 
+       FractionBox[
+        RowBox[{"1", "-", 
+         RowBox[{"Cos", "[", 
+          SqrtBox["z"], "]"}]}], "z"], ",", 
+       RowBox[{"z", "<", "0"}], ",", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"Cosh", "[", 
+          SqrtBox[
+           RowBox[{"-", "z"}]], "]"}], "-", "1"}], 
+        RowBox[{"-", "z"}]], ",", 
+       RowBox[{"z", "\[Equal]", "0"}], ",", 
+       FractionBox["1", "2"]}], "]"}]}], ";"}]}]}]], "Code",
+ CellChangeTimes->{{3.7208893397671666`*^9, 3.7208895866472573`*^9}, {
+  3.720889654750944*^9, 3.720889718878851*^9}, {3.720889755947686*^9, 
+  3.720889762748227*^9}, {3.720889795301697*^9, 3.7208897978699102`*^9}, {
+  3.72088983806997*^9, 3.7208900176031857`*^9}, {3.7208900770697556`*^9, 
+  3.7208902425894012`*^9}, {3.7208904376426563`*^9, 3.720890516344678*^9}, {
+  3.7208905765472827`*^9, 3.7208908852808537`*^9}, {3.7209287061026154`*^9, 
+  3.72092871206911*^9}, {3.720928963711849*^9, 3.7209289962606845`*^9}, {
+  3.720929595953206*^9, 3.7209296553905764`*^9}, {3.7228095143225913`*^9, 
+  3.7228095204624453`*^9}, {3.722809553385197*^9, 
+  3.722809558929388*^9}},ExpressionUUID->"60a93502-8be3-4596-ade1-\
+613dbe8a3880"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Series vs Exact Stump Functions ", "Subsection",
+ CellChangeTimes->{{3.7208910336241846`*^9, 
+  3.720891053434701*^9}},ExpressionUUID->"7f0139cb-2975-4a5c-8f1a-\
+dc6ef694b124"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Sseriesplot", "[", "n_", "]"}], ":=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["S", "series"], "[", 
+      RowBox[{"z", ",", "n"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", 
+       RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Dashed"}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", "\"\<S[z] exact vs Series Expansion\>\""}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", 
+      RowBox[{"{", "Bold", "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Sexactplot", ":=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["S", "exact"], "[", "z", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", 
+       RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", "Bold", "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Serror", "[", "n_", "]"}], ":=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Log10", "[", 
+      FractionBox[
+       RowBox[{"Abs", "[", 
+        RowBox[{
+         RowBox[{
+          SubscriptBox["S", "series"], "[", 
+          RowBox[{"z", ",", "n"}], "]"}], "-", 
+         RowBox[{
+          SubscriptBox["S", "exact"], "[", "z", "]"}]}], "]"}], 
+       RowBox[{
+        SubscriptBox["S", "exact"], "[", "z", "]"}]], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", 
+       RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Bold"}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", 
+      "\"\<Log Error Between S[z] Exact & Series\>\""}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", 
+      RowBox[{"{", "Bold", "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Sseriesplot", "[", "n", "]"}], ",", "Sexactplot"}], "}"}], 
+        ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Serror", "[", "n", "]"}], "}"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], "}"}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "5"}], "}"}], ",", "0", ",", "15", ",", "1"}], 
+    "}"}]}], "]"}]}], "Code",
+ CellChangeTimes->{{3.7208910710080442`*^9, 3.7208911847761407`*^9}, {
+  3.720891222087976*^9, 3.720891538801533*^9}, {3.7208915738411984`*^9, 
+  3.7208918325966487`*^9}, {3.720891912826788*^9, 3.720892018592704*^9}, {
+  3.7208921284981136`*^9, 3.720892139671969*^9}, {3.7208988147034864`*^9, 
+  3.7208989535944386`*^9}, {3.720898985940312*^9, 3.7208991083032985`*^9}, {
+  3.7208991396120925`*^9, 3.7208991401001196`*^9}, {3.7208993963267927`*^9, 
+  3.720899397252846*^9}, {3.720927933618004*^9, 3.7209279341335135`*^9}, {
+  3.7209279681272745`*^9, 3.7209279691585226`*^9}, {3.7209280329255524`*^9, 
+  3.7209280331911616`*^9}, {3.720928075334133*^9, 3.7209281188317156`*^9}, {
+  3.720928176035221*^9, 3.7209283055512557`*^9}, {3.720928368034898*^9, 
+  3.7209284667713375`*^9}, {3.720928626961627*^9, 
+  3.7209286324774456`*^9}},ExpressionUUID->"f698551a-b4e7-4fca-a79c-\
+fb2f22d8200a"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 15, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`n$$], 5}, 0, 15, 1}}, Typeset`size$$ = {
+    576., {370., 377.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`n$64237$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`n$$ = 5}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$64237$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Show[{
+           $CellContext`Sseriesplot[$CellContext`n$$], \
+$CellContext`Sexactplot}, ImageSize -> Large], 
+         Show[{
+           $CellContext`Serror[$CellContext`n$$]}, ImageSize -> Large]}], 
+      "Specifications" :> {{{$CellContext`n$$, 5}, 0, 15, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{627., {417., 424.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7209284683025846`*^9, {3.7209286162231975`*^9, 3.720928633180402*^9}, 
+   3.7228095235346336`*^9},ExpressionUUID->"940d6c69-08cd-4c02-9e1d-\
+dc147a7412da"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Cseriesplot", "[", "n_", "]"}], ":=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["C", "series"], "[", 
+      RowBox[{"z", ",", "n"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", 
+       RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Dashed"}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", "\"\<C[z] exact vs Series Expansion\>\""}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", 
+      RowBox[{"{", "Bold", "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Cexactplot", ":=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["C", "exact"], "[", "z", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", 
+       RowBox[{"-", "100"}], ",", "100"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Cerror", "[", "n_", "]"}], ":=", 
+  RowBox[{"Plot", "[", 
+   RowBox[{
+    RowBox[{"SetAccuracy", "[", 
+     RowBox[{
+      RowBox[{"Log10", "[", 
+       FractionBox[
+        RowBox[{"Abs", "[", 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["C", "series"], "[", 
+           RowBox[{"z", ",", "n"}], "]"}], "-", 
+          RowBox[{
+           SubscriptBox["C", "exact"], "[", "z", "]"}]}], "]"}], 
+        RowBox[{
+         SubscriptBox["C", "exact"], "[", "z", "]"}]], "]"}], ",", "20"}], 
+     "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"z", ",", 
+      RowBox[{"-", "100"}], ",", "100"}], "}"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"Red", ",", "Bold"}], "}"}]}], ",", 
+    RowBox[{
+    "PlotLabel", "\[Rule]", "\"\<Log Error Between C[z] Exact & Series\>\""}],
+     ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", "Bold", "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Cseriesplot", "[", "n", "]"}], ",", "Cexactplot"}], "}"}], 
+        ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Cerror", "[", "n", "]"}], "}"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], "}"}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "5"}], "}"}], ",", "0", ",", "30"}], "}"}]}], 
+  "]"}]}], "Code",
+ CellChangeTimes->{
+  3.720899156504078*^9, {3.720899189957994*^9, 3.7208992718806653`*^9}, {
+   3.7208993219095316`*^9, 3.7208993317071114`*^9}, 3.7208994044412575`*^9, {
+   3.720929714875723*^9, 
+   3.720929725594666*^9}},ExpressionUUID->"fb901537-db71-4e8a-a1c5-\
+6e82827dd0cf"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`n$$], 5}, 0, 30}}, Typeset`size$$ = {
+    576., {370., 377.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`n$64396$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`n$$ = 5}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$64396$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Show[{
+           $CellContext`Cseriesplot[$CellContext`n$$], \
+$CellContext`Cexactplot}, ImageSize -> Large], 
+         Show[{
+           $CellContext`Cerror[$CellContext`n$$]}, ImageSize -> Large]}], 
+      "Specifications" :> {{{$CellContext`n$$, 5}, 0, 30}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{627., {417., 424.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.720899273946787*^9, 3.7208993365403695`*^9, 3.720899413362768*^9, 
+   3.7208994685039253`*^9, {3.7209246960525646`*^9, 3.7209246966150703`*^9}, 
+   3.7209297279382267`*^9, 
+   3.722809524128373*^9},ExpressionUUID->"b063294b-2da5-4a9d-b2b4-\
+790262adec25"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1440, 817},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 213, 4, 67, "Section",ExpressionUUID->"520a2d24-fd90-492f-b058-2261ea4d34e4"],
+Cell[CellGroupData[{
+Cell[818, 30, 159, 3, 53, "Subsection",ExpressionUUID->"44f62e7d-b63a-4325-9f3a-d70d9986811c"],
+Cell[980, 35, 3826, 112, 265, "Code",ExpressionUUID->"60a93502-8be3-4596-ade1-613dbe8a3880"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4843, 152, 182, 3, 53, "Subsection",ExpressionUUID->"7f0139cb-2975-4a5c-8f1a-dc6ef694b124"],
+Cell[CellGroupData[{
+Cell[5050, 159, 3737, 101, 125, "Code",ExpressionUUID->"f698551a-b4e7-4fca-a79c-fb2f22d8200a"],
+Cell[8790, 262, 1903, 40, 860, "Output",ExpressionUUID->"940d6c69-08cd-4c02-9e1d-dc147a7412da"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10730, 307, 3092, 94, 125, "Code",ExpressionUUID->"fb901537-db71-4e8a-a1c5-6e82827dd0cf"],
+Cell[13825, 403, 1996, 42, 860, "Output",ExpressionUUID->"b063294b-2da5-4a9d-b2b4-790262adec25"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,200 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7305,        192]
+NotebookOptionsPosition[      6784,        175]
+NotebookOutlinePosition[      7130,        190]
+CellTagsIndexPosition[      7087,        187]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"ClearAll", ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"G", "=", 
+    RowBox[{"6.674", "*", 
+     SuperscriptBox["10", 
+      RowBox[{"-", "20"}]]}]}], ";"}], "   ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Gravitational", " ", "Constant"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"m", "=", 
+    RowBox[{"5.974", "*", 
+     RowBox[{"10", "^", "24"}]}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Earth", " ", "Mass"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"R", "=", "6378"}], ";"}], "         ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Radius", " ", "of", " ", "Earth"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"StreamPlot", "[", 
+   RowBox[{
+    FractionBox[
+     RowBox[{
+      RowBox[{"-", "G"}], " ", "m", " ", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}]}], 
+     SuperscriptBox[
+      RowBox[{"Norm", "[", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "]"}], "3"]], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"y", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+    RowBox[{"VectorPoints", "\[Rule]", "Fine"}]}], "]"}], ";"}], "\n", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"StreamPlot", "[", 
+    RowBox[{
+     FractionBox[
+      RowBox[{
+       RowBox[{"-", "G"}], " ", "m", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"x", "-", 
+          RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+         RowBox[{"y", "-", 
+          RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}]}], 
+      SuperscriptBox[
+       RowBox[{"Norm", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"x", "-", 
+           RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+          RowBox[{"y", "-", 
+           RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}], "]"}], "3"]], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+     RowBox[{"VectorPoints", "->", "10"}], ",", "\n", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", 
+        RowBox[{"Disk", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Cos", "[", "t", "]"}], ",", 
+            RowBox[{"Sin", "[", "t", "]"}]}], "}"}], ",", ".15"}], "]"}]}], 
+       "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", " ", "\[Pi]"}]}], "}"}]}], "]"}]}], "Code",
+ CellChangeTimes->{{3.71823111611287*^9, 3.7182311360660133`*^9}, {
+  3.718231294984112*^9, 3.718231337474528*^9}, {3.7182314025622544`*^9, 
+  3.718231463681774*^9}, {3.7182314957175894`*^9, 3.7182317789605584`*^9}, {
+  3.718231830285515*^9, 3.7182320315980234`*^9}, {3.718232077254641*^9, 
+  3.7182321520699444`*^9}, {3.7182322356087284`*^9, 3.7182322447302437`*^9}, {
+  3.7182322984783077`*^9, 3.7182323321292553`*^9}, {3.718232363518046*^9, 
+  3.7182324820674453`*^9}, {3.718232520580652*^9, 3.718232593714841*^9}, {
+  3.7182326497540703`*^9, 3.718232701561017*^9}, {3.7182328004476795`*^9, 
+  3.7182328148235035`*^9}, {3.7182328490524826`*^9, 3.718233098935773*^9}, {
+  3.718233136182907*^9, 3.7182331400791283`*^9}, {3.7182332011475515`*^9, 
+  3.718233365980011*^9}, {3.718385603277503*^9, 
+  3.7183856449843254`*^9}},ExpressionUUID->"0162a671-d4fc-47a7-b7e9-\
+3ec158e8bfa4"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 2 Pi}}, Typeset`size$$ = {
+    360., {177., 184.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$32555$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$32555$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      StreamPlot[(-$CellContext`G) $CellContext`m {$CellContext`x - 
+          Cos[$CellContext`t$$], $CellContext`y - Sin[$CellContext`t$$]}/
+        Norm[{$CellContext`x - Cos[$CellContext`t$$], $CellContext`y - 
+           Sin[$CellContext`t$$]}]^3, {$CellContext`x, -2, 
+         2}, {$CellContext`y, -2, 2}, VectorPoints -> 10, Epilog -> {Red, 
+          Disk[{
+            Cos[$CellContext`t$$], 
+            Sin[$CellContext`t$$]}, 0.15]}], 
+      "Specifications" :> {{$CellContext`t$$, 0, 2 Pi}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {224., 231.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.718232100595995*^9, 3.718232152742962*^9}, 
+   3.718232245227259*^9, {3.7182323053747025`*^9, 3.71823233273927*^9}, {
+   3.7182324146929626`*^9, 3.718232440603446*^9}, 3.718232475947097*^9, 
+   3.7182326524802055`*^9, 3.71823270283809*^9, 3.7182328160845737`*^9, {
+   3.7182329415087557`*^9, 3.718233001698206*^9}, {3.71823307774556*^9, 
+   3.718233100440858*^9}, 3.718233141199192*^9, {3.7182332079999475`*^9, 
+   3.7182332240668635`*^9}, {3.718233279966064*^9, 3.7182333669900484`*^9}, {
+   3.718356529308428*^9, 3.718356530472365*^9}, {3.718385577761815*^9, 
+   3.7183856468124533`*^9}},ExpressionUUID->"b5a326cf-8a74-4607-b7b2-\
+afddc630a285"]
+}, Open  ]],
+
+Cell[BoxData["\[AliasDelimiter]"], "Input",
+ CellChangeTimes->{
+  3.718385591761836*^9},ExpressionUUID->"43fce605-eb04-4a3d-8b2f-\
+8ef3f93c2d6b"]
+},
+WindowSize->{1418, 817},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 3429, 94, 212, "Code",ExpressionUUID->"0162a671-d4fc-47a7-b7e9-3ec158e8bfa4"],
+Cell[4012, 118, 2608, 49, 474, "Output",ExpressionUUID->"b5a326cf-8a74-4607-b7b2-afddc630a285"]
+}, Open  ]],
+Cell[6635, 170, 145, 3, 28, "Input",ExpressionUUID->"43fce605-eb04-4a3d-8b2f-8ef3f93c2d6b"]
+}
+]
+*)
+

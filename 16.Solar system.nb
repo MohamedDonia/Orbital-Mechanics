@@ -1,0 +1,2804 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    117337,       2796]
+NotebookOptionsPosition[    112835,       2723]
+NotebookOutlinePosition[    113183,       2738]
+CellTagsIndexPosition[    113140,       2735]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Clear", " ", "all", " ", "the", " ", "variables", " ", "in", " ", "the", 
+    " ", "memory"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}]}]], "Code",
+ CellChangeTimes->{
+  3.718483773769718*^9, {3.718491759256436*^9, 
+   3.718491778204692*^9}},ExpressionUUID->"dcb2d4cc-a7f9-4328-bee3-\
+488bfaf016a8"],
+
+Cell[CellGroupData[{
+
+Cell["Solar System Problem", "Section",
+ CellChangeTimes->{{3.718385889774599*^9, 
+  3.718385988175432*^9}},ExpressionUUID->"77ae7aef-ea20-48fd-9e8b-\
+784f695ab33b"],
+
+Cell[CellGroupData[{
+
+Cell["Problem definition ", "Subsection",
+ CellChangeTimes->{{3.7183859971598177`*^9, 
+  3.718386005316168*^9}},ExpressionUUID->"7632170e-64b8-44f4-adf6-\
+f71fb0532ba8"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"G", "=", 
+    RowBox[{"6.67259", "*", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "20"}]}]}]}], ";"}], "         ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Gravitational", " ", "Constant"}], "  ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Sun", " ", "data"}], "  ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Rsun", "=", "696000"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Msun", "=", 
+   RowBox[{"1.989", "*", 
+    SuperscriptBox["10", "30"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Isun", "=", "0"}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Mercury", "  ", "data"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Rmercury", "=", "2440"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Mmercury", "=", 
+   RowBox[{"330.2", "*", 
+    SuperscriptBox["10", "21"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Imercury", "=", "7"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Tmercury", "=", 
+   RowBox[{"87.97", "*", "24", "*", "3600"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Dmercury", "=", 
+   RowBox[{"57.91", "*", 
+    SuperscriptBox["10", "6"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Vmercury", "=", 
+    RowBox[{"2", "\[Pi]", "*", 
+     RowBox[{"Dmercury", "/", "Tmercury"}]}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Venus", " ", "data"}], "  ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Rvenus", "=", "6052"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Mvenus", "=", 
+   RowBox[{"4.689", "*", 
+    SuperscriptBox["10", "24"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Ivenus", "=", "3.39"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Tvenus", "=", 
+   RowBox[{"224.7", "*", "24", "*", "3600"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Dvenus", "=", 
+   RowBox[{"108.2", "*", 
+    SuperscriptBox["10", "6"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Vvenus", "=", 
+    RowBox[{"2", "\[Pi]", "*", 
+     RowBox[{"Dvenus", "/", "Tvenus"}]}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"earth", " ", "data"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Rearth", "=", "6378"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Mearth", "=", 
+   RowBox[{"5.974", "*", 
+    SuperscriptBox["10", "24"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Iearth", "=", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Tearth", "=", 
+   RowBox[{"356.256", "*", "24", "*", "3600"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Dearth", "=", 
+   RowBox[{"149.6", "*", 
+    SuperscriptBox["10", "6"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Vearth", "=", 
+    RowBox[{"2", "\[Pi]", "*", 
+     RowBox[{"Dearth", "/", "Tearth"}]}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Mars", " ", "data"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Rmars", "=", "3396"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Mmars", "=", 
+   RowBox[{"641.9", "*", 
+    SuperscriptBox["10", "21"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Imars", "=", "1.85"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Tmars", "=", 
+   RowBox[{"1.881", "*", "356.256", "*", "24", "*", "3600"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Dmars", "=", 
+   RowBox[{"227.9", "*", 
+    SuperscriptBox["10", "6"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Vmars", "=", 
+    RowBox[{"2", "\[Pi]", "*", 
+     RowBox[{"Dmars", "/", "Tmars"}]}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"jupiter", " ", "data"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Rjupiter", "=", "71940"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Mjupiter", "=", 
+   RowBox[{"1.889", "*", 
+    SuperscriptBox["10", "27"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Ijupiter", "=", "1.304"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Tjupiter", "=", 
+   RowBox[{"11.86", "*", "356.256", "*", "24", "*", "3600"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Djupiter", "=", 
+   RowBox[{"778.6", "*", 
+    SuperscriptBox["10", "6"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Vjupiter", "=", 
+    RowBox[{"2", "\[Pi]", "*", 
+     RowBox[{"Djupiter", "/", "Tjupiter"}]}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Satum", "  ", "data"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Rsatum", "=", "60270"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Msatum", "=", 
+   RowBox[{"568.5", "*", 
+    SuperscriptBox["10", "24"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Isatum", "=", "2.485"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Tsatum", "=", 
+   RowBox[{"29.46", "*", "356.256", "*", "24", "*", "3600"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Dsatum", "=", 
+   RowBox[{"1.433", "*", 
+    SuperscriptBox["10", "9"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Vsatum", "=", 
+    RowBox[{"2", "\[Pi]", "*", 
+     RowBox[{"Dsatum", "/", "Tsatum"}]}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Uranus", " ", "data"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Ruranus", "=", "25560"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Muranus", "=", 
+   RowBox[{"86.83", "*", 
+    SuperscriptBox["10", "24"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Iuranus", "=", "0.772"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Turanus", "=", 
+   RowBox[{"84.01", "*", "356.256", "*", "24", "*", "3600"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Duranus", "=", 
+   RowBox[{"2.872", "*", 
+    SuperscriptBox["10", "9"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Vuranus", "=", 
+    RowBox[{"2", "\[Pi]", "*", 
+     RowBox[{"Duranus", "/", "Turanus"}]}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Neptune", " ", "data"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Rneptune", "=", "24760"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Mneptune", "=", 
+   RowBox[{"102.4", "*", 
+    SuperscriptBox["10", "24"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Ineptune", "=", "1.769"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Tneptune", "=", 
+   RowBox[{"164.8", "*", "356.256", "*", "24", "*", "3600"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Dneptune", "=", 
+   RowBox[{"4.495", "*", 
+    SuperscriptBox["10", "9"]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Vneptune", "=", 
+   RowBox[{"2", "\[Pi]", "*", 
+    RowBox[{"Dneptune", "/", "Tneptune"}]}]}], ";"}]}], "Code",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQA2IQ/UhOWttpy2vHkLk6YHrNOuYeEL3WqnAKiG5a138I
+RK/IYzwMorsqTxwD0UkKLMdBtN5J5dMgepNUzUsQXc3VVhkBpA/0vgPTgR+W
+TQbRZ2oDl4Nos77srWD6gup1EL2d7fktEJ0dfeEZiF4fE8QZCTLnUAE3iHaR
+UdYF0QFGffYg2lphqSeIPhGd4A2i9VZdDwTRMxyeB4Foh6oXmSB6wbOELBB9
+vrImD0Q3SNYXguhorvBSEL3t2P5KEH1mYkQLiOaJcZsEoivUt08D0Vf4NOaA
+aL/v/12SgPQsEysfEP3T2i8IRMtpM5eA6CkFfyeD6APLPh0A0etmc4clA2mr
+tf5gGgBBLrYO
+  "],ExpressionUUID->"871ea8a3-11b2-4dc0-9530-4c70b6cb8835"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Solution Initialization  ", "Subsection",
+ CellChangeTimes->{{3.7184537092707696`*^9, 3.7184537194173527`*^9}, {
+  3.718482688326185*^9, 
+  3.7184826951451893`*^9}},ExpressionUUID->"950a6dcb-7419-4818-bf6d-\
+a0d65055b9d0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"t0", "=", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"tf", "=", 
+    RowBox[{"1000", "*", "Tearth"}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"equations", " ", "of", " ", "the", " ", "system"}], "  ", "*)"}], 
+  "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Xsun", "''"}], "[", "t", "]"}], "=."}], "\n", 
+                   RowBox[{
+                    RowBox[{"Xmercury", "''"}], "[", "t", "]"}]}], "=."}], 
+                 "\n", 
+                 RowBox[{
+                  RowBox[{"Xvenus", "''"}], "[", "t", "]"}]}], "=."}], "\n", 
+               RowBox[{
+                RowBox[{"Xearth", "''"}], "[", "t", "]"}]}], "=."}], "\n", 
+             RowBox[{
+              RowBox[{"Xmars", "''"}], "[", "t", "]"}]}], "=."}], "\n", 
+           RowBox[{
+            RowBox[{"Xjupiter", "''"}], "[", "t", "]"}]}], "=."}], "\n", 
+         RowBox[{
+          RowBox[{"Xuranus", "''"}], "[", "t", "]"}]}], "=."}], "\n", 
+       RowBox[{
+        RowBox[{"Xsatum", "''"}], "[", "t", "]"}]}], "=."}], "\n", 
+     RowBox[{
+      RowBox[{"Xneptune", "''"}], "[", "t", "]"}]}], "=."}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Equ", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xsun", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Mmercury", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mvenus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mearth", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmars", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mjupiter", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Msatum", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Muranus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mneptune", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xsun", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}], ",", 
+      "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xmercury", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Msun", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mvenus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mearth", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmars", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mjupiter", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Msatum", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Muranus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mneptune", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xmercury", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}], 
+      ",", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xvenus", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Msun", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmercury", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mearth", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmars", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mjupiter", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Msatum", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Muranus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mneptune", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xvenus", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}], 
+      ",", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xearth", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Msun", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmercury", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mvenus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmars", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mjupiter", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Msatum", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Muranus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mneptune", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xearth", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}], 
+      ",", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xmars", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Msun", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmercury", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mvenus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", " ", 
+         FractionBox[
+          RowBox[{"G", "*", "Mearth", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mjupiter", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Msatum", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Muranus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mneptune", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xmars", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}], ",",
+       "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xjupiter", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Msun", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmercury", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mvenus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Mearth", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmars", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Msatum", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Muranus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mneptune", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xjupiter", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}], 
+      ",", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xsatum", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Msun", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmercury", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mvenus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Mearth", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmars", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mjupiter", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Muranus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mneptune", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xsatum", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}], 
+      ",", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xuranus", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Msun", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmercury", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mvenus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Mearth", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmars", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mjupiter", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Msatum", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mneptune", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xneptune", "[", "t", "]"}], "-", 
+             RowBox[{"Xuranus", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}], 
+      ",", "\n", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xneptune", "''"}], "[", "t", "]"}], "==", 
+       RowBox[{"(", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"G", "*", "Msun", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsun", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmercury", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmercury", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mvenus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xvenus", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         FractionBox[
+          RowBox[{"G", "*", "Mearth", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xearth", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mmars", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xmars", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Mjupiter", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xjupiter", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], "]"}], "3"]], "+", "\n", 
+         " ", 
+         FractionBox[
+          RowBox[{"G", "*", "Msatum", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xsatum", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], "]"}], "3"]], "+", 
+         FractionBox[
+          RowBox[{"G", "*", "Muranus", "*", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], ")"}]}], 
+          SuperscriptBox[
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"Xuranus", "[", "t", "]"}], "-", 
+             RowBox[{"Xneptune", "[", "t", "]"}]}], "]"}], "3"]]}], ")"}]}]}],
+      "\n", "\n", "}"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Initial", " ", "conditions"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Init", "=", 
+    RowBox[{"{", "\n", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Xsun", "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xsun", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ",", "\n", 
+      RowBox[{
+       RowBox[{"Xmercury", "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"Dmercury", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xmercury", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Vmercury", "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"Imercury", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Vmercury", "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"Imercury", " ", "Degree"}], "]"}]}]}], "}"}]}], ",", "\n", 
+      RowBox[{
+       RowBox[{"Xvenus", "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"Dvenus", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xvenus", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Vvenus", "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"Ivenus", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Vvenus", "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"Ivenus", " ", "Degree"}], "]"}]}]}], "}"}]}], ",", "\n", 
+      RowBox[{
+       RowBox[{"Xearth", "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"Dearth", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xearth", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Vearth", "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"Iearth", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Vearth", "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"Iearth", " ", "Degree"}], "]"}]}]}], "}"}]}], ",", "\n", 
+      RowBox[{
+       RowBox[{"Xmars", "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"Dmars", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xmars", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Vmars", "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"Imars", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Vmars", "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"Imars", " ", "Degree"}], "]"}]}]}], "}"}]}], ",", "\n", 
+      RowBox[{
+       RowBox[{"Xjupiter", "[", "0", "]"}], "==", 
+       RowBox[{"{", 
+        RowBox[{"Djupiter", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xjupiter", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Vjupiter", "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"Ijupiter", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Vjupiter", "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"Ijupiter", " ", "Degree"}], "]"}]}]}], "}"}]}], ",", "\n", 
+      RowBox[{
+       RowBox[{"Xsatum", "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"Dsatum", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xsatum", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Vsatum", "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"Isatum", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Vsatum", "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"Isatum", " ", "Degree"}], "]"}]}]}], "}"}]}], ",", "\n", 
+      RowBox[{
+       RowBox[{"Xuranus", "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"Duranus", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xuranus", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Vuranus", "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"Iuranus", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Vuranus", "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"Iuranus", " ", "Degree"}], "]"}]}]}], "}"}]}], ",", "\n", 
+      RowBox[{
+       RowBox[{"Xneptune", "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"Dneptune", ",", "0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Xneptune", "'"}], "[", "0", "]"}], "\[Equal]", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Vneptune", "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"Ineptune", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Vneptune", "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"Ineptune", " ", "Degree"}], "]"}]}]}], "}"}]}]}], 
+     "\[IndentingNewLine]", "}"}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Combining", " ", "the", " ", "system"}], "  ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"sys", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"{", 
+     RowBox[{"Equ", ",", "Init"}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"states", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Xsun", "[", "t", "]"}], ",", 
+     RowBox[{"Xmercury", "[", "t", "]"}], ",", 
+     RowBox[{"Xvenus", "[", "t", "]"}], ",", 
+     RowBox[{"Xearth", "[", "t", "]"}], ",", "\n", "        ", 
+     RowBox[{"Xmars", "[", "t", "]"}], ",", 
+     RowBox[{"Xjupiter", "[", "t", "]"}], ",", 
+     RowBox[{"Xsatum", "[", "t", "]"}], ",", 
+     RowBox[{"Xuranus", "[", "t", "]"}], ",", 
+     RowBox[{"Xneptune", "[", "t", "]"}]}], "}"}]}], ";"}]}], "Code",
+ CellChangeTimes->{{3.718453733943185*^9, 3.718453735107249*^9}, {
+   3.718453767229097*^9, 3.7184538055742855`*^9}, {3.718453837447091*^9, 
+   3.718453916313607*^9}, {3.718453952362691*^9, 3.7184540225436897`*^9}, {
+   3.7184540525844297`*^9, 3.718454132681017*^9}, {3.7184542125475903`*^9, 
+   3.7184543088320837`*^9}, {3.718454339640869*^9, 3.7184556725161905`*^9}, {
+   3.718455704075985*^9, 3.718455768416669*^9}, {3.7184558332343817`*^9, 
+   3.718456181089316*^9}, {3.7184777106381273`*^9, 3.718478193083753*^9}, {
+   3.7184784953026795`*^9, 3.7184785299616632`*^9}, {3.718478625374056*^9, 
+   3.7184786481176577`*^9}, {3.7184797089962378`*^9, 3.718479731484872*^9}, {
+   3.7184804768393292`*^9, 3.718480695703476*^9}, {3.718480876749546*^9, 
+   3.7184809806199236`*^9}, {3.71848101615849*^9, 3.71848105790244*^9}, {
+   3.7184810982919474`*^9, 3.718481334251497*^9}, 3.718481901074874*^9, {
+   3.7184823029499073`*^9, 3.7184826698379593`*^9}, {3.71848274525894*^9, 
+   3.718482774956183*^9}, {3.7184828436562147`*^9, 3.718482845079484*^9}, {
+   3.7184833661467505`*^9, 3.71848343079399*^9}, {3.718483637458603*^9, 
+   3.7184837075777087`*^9}, 3.7184838631005535`*^9, 3.7184838981100407`*^9, {
+   3.7184841426939106`*^9, 3.7184841494241695`*^9}, {3.718484203019988*^9, 
+   3.718484469823862*^9}, {3.718484548254439*^9, 3.7184846114304323`*^9}, {
+   3.7184846612009306`*^9, 3.7184848796094103`*^9}, {3.7184851346596065`*^9, 
+   3.718485318235246*^9}, {3.7184854291957345`*^9, 3.7184854762408047`*^9}, {
+   3.718485620423168*^9, 3.71848563379568*^9}, {3.7184858104623103`*^9, 
+   3.7184858676250644`*^9}, {3.71848590726972*^9, 3.718485907790102*^9}, {
+   3.7184863579618444`*^9, 3.718486416841704*^9}, {3.718486536395045*^9, 
+   3.7184867602826824`*^9}, {3.7184873802568617`*^9, 3.718487565989676*^9}, {
+   3.718489977745207*^9, 3.718489982207219*^9}, 3.7184901109578514`*^9, {
+   3.7184901569541273`*^9, 3.718490163087866*^9}, {3.718490567781184*^9, 
+   3.7184905735760455`*^9}, {3.718490645060439*^9, 3.718490772515473*^9}, {
+   3.7184908041615353`*^9, 3.718491278707982*^9}, {3.7184913142874856`*^9, 
+   3.718491336475196*^9}, 3.7184913745462837`*^9, {3.7184914409320726`*^9, 
+   3.718491575565769*^9}, 3.7184916102901917`*^9, {3.7184916535167065`*^9, 
+   3.718491668861212*^9}, {3.718491706929539*^9, 3.7184917281949043`*^9}, {
+   3.71849182505995*^9, 3.7184918264829693`*^9}, {3.718491887485047*^9, 
+   3.718491924393932*^9}, {3.7184921758981657`*^9, 3.7184921792151375`*^9}, {
+   3.7184922289370313`*^9, 3.7184922491654406`*^9}, {3.718493430870438*^9, 
+   3.718493524788972*^9}, {3.718493585554843*^9, 3.71849358988309*^9}, {
+   3.7184936252625847`*^9, 3.718493626279625*^9}, {3.718494010138362*^9, 
+   3.718494023914691*^9}, 3.7184940585746126`*^9, {3.7184941755950403`*^9, 
+   3.718494181448723*^9}, 3.7184942542178693`*^9, {3.7184943419964886`*^9, 
+   3.7184943537202725`*^9}, {3.7185006841438875`*^9, 3.71850074605371*^9}, {
+   3.7185009134293604`*^9, 3.718500975779086*^9}, {3.718501236382389*^9, 
+   3.718501259647394*^9}, {3.718502026104879*^9, 3.718502027084764*^9}, {
+   3.7185026298106837`*^9, 3.718502632162759*^9}, 3.7185026739923463`*^9, {
+   3.7185031620156183`*^9, 3.718503162359624*^9}, {3.718503294088788*^9, 
+   3.718503294219799*^9}, 3.7185042339493985`*^9, {3.718510567185464*^9, 
+   3.718510573735963*^9}, 
+   3.718510661030439*^9},ExpressionUUID->"f21fb5b7-9cfe-4555-8f67-\
+99013c8e9f56"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xsun\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,188,19,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.7185105756422424`*^9},ExpressionUUID->"9977e9bc-4e89-4952-9cc2-\
+ffb6638fd500"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.718510575759795*^9},ExpressionUUID->"ee80708a-6c37-4da5-b4cb-\
+4ed7324d6ece"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xmercury\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,189,20,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.718510575759795*^9},ExpressionUUID->"fbf0d074-a42e-43b5-8db8-\
+3d106cffcb5a"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.718510575791022*^9},ExpressionUUID->"102a24ab-246a-455c-acc1-\
+20b188695b12"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xvenus\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,190,21,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.718510575791022*^9},ExpressionUUID->"8460ac09-bf04-48a5-8c63-\
+4163e12ef3b3"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.7185105758222713`*^9},ExpressionUUID->"31a262fc-afa8-41a5-94c6-\
+f2a7845d8720"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xearth\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,191,22,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.7185105758222713`*^9},ExpressionUUID->"b402bf1e-6014-4b4e-a244-\
+ea2b52c602f5"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.7185105758535247`*^9},ExpressionUUID->"3d22e972-afcb-49f2-a67a-\
+2d3449d4450e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xmars\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,192,23,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.7185105758535247`*^9},ExpressionUUID->"39c9bd18-74d8-40d9-9ed8-\
+f83cc3b29223"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.7185105758847733`*^9},ExpressionUUID->"94a68b79-bdc6-44e5-9e60-\
+0a06132e1f40"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xjupiter\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,193,24,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.7185105758847733`*^9},ExpressionUUID->"ed0d57b5-47d4-47ee-9a20-\
+5ecbdf1182a9"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.7185105759160233`*^9},ExpressionUUID->"659e3afb-3435-46f7-a54c-\
+fb53bdd75b22"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xuranus\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,194,25,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.7185105759160233`*^9},ExpressionUUID->"1bb1241a-4619-4530-a3e8-\
+8e68510c1bfd"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.7185105759472747`*^9},ExpressionUUID->"14d7a8c2-10fe-462b-9161-\
+6c9487669dc5"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xsatum\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,195,26,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.7185105759628973`*^9},ExpressionUUID->"0da39a64-6e28-4f4d-bdc0-\
+5265b6f0528c"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.7185105759785433`*^9},ExpressionUUID->"929b810d-24fa-487c-99f1-\
+9a2073fcea42"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Unset","norep",
+   "\"Assignment on \\!\\(\\*RowBox[{\\\"Derivative\\\"}]\\) for \
+\\!\\(\\*RowBox[{SuperscriptBox[\\\"Xneptune\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}]\\) not \
+found.\"",2,196,27,26847339712014353279,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.7185105759941473`*^9},ExpressionUUID->"c54ac632-6a72-4af4-b317-\
+44004a90b56e"],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.7185105760097733`*^9},ExpressionUUID->"4eb23e92-e771-4e5c-a87f-\
+7f994cba7acd"]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Handling the solution ", "Subsection",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7185007708722057`*^9, 3.718500789757367*^9}, {
+  3.7185013011738334`*^9, 
+  3.7185013219993496`*^9}},ExpressionUUID->"a0479aeb-d7f6-40bf-94b0-\
+89d5248e5a53"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Output", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{"sys", ",", "states", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "t0", ",", "tf"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Psun", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xsun", "[", "t", "]"}], "/.", "Output"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Pmercury", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xmercury", "[", "t", "]"}], "/.", "Output"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Pvenus", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xvenus", "[", "t", "]"}], "/.", "Output"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Pearth", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xearth", "[", "t", "]"}], "/.", "Output"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Pmars", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xmars", "[", "t", "]"}], "/.", "Output"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Pjupiter", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xjupiter", "[", "t", "]"}], "/.", "Output"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Psatum", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xsatum", "[", "t", "]"}], "/.", "Output"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Puranus", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xuranus", "[", "t", "]"}], "/.", "Output"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Pneptune", "[", "t_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"Xneptune", "[", "t", "]"}], "/.", "Output"}]}], ";"}]}], "Code",
+ CellChangeTimes->{{3.7185013307349896`*^9, 3.7185014779395933`*^9}, {
+   3.7185015321249356`*^9, 3.718501561919324*^9}, {3.7185015970483627`*^9, 
+   3.718501620869501*^9}, {3.718501814648696*^9, 3.7185018268763795`*^9}, {
+   3.7185018665004272`*^9, 3.7185019080709543`*^9}, {3.718501955665847*^9, 
+   3.718502014752842*^9}, {3.7185020549198313`*^9, 3.71850216823752*^9}, {
+   3.718502232698459*^9, 3.718502453015808*^9}, 3.7185031221426506`*^9, {
+   3.7185032242797003`*^9, 3.718503282509411*^9}, 
+   3.718503749258941*^9},ExpressionUUID->"70c055ad-0856-4d19-94ad-\
+0abd79ac9cd4"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["plotting solar system", "Subsection",
+ CellChangeTimes->{{3.7185027255800753`*^9, 3.7185027307526307`*^9}, {
+  3.7185070095596066`*^9, 
+  3.718507016312313*^9}},ExpressionUUID->"a5108720-0fed-4583-a350-\
+5fcef3a1c3b0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"tplot", "=", 
+   RowBox[{"180", "*", "Tearth"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"sunplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Psun", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Red"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"mercuryplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Pmercury", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Orange"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"venusplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Pvenus", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Yellow"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"earthplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Pearth", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Blue"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"marsplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Pmars", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Black"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"jupiterplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Pjupiter", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Gray"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"satumplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Psatum", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Purple"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"uranusplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Puranus", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Red"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"neptuneplot", ":=", 
+    RowBox[{"ParametricPlot3D", "[", 
+     RowBox[{
+      RowBox[{"Pneptune", "[", "t", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"Thick", ",", "Green"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"plot", " ", "planets"}], " ", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"mercuryplotpoint", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", 
+      RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"Pmercury", "[", "t", "]"}], "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"venusplotpoint", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", 
+      RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"Pvenus", "[", "t", "]"}], "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"earthplotpoint", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", 
+      RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"Pearth", "[", "t", "]"}], "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"marsplotpoint", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", 
+      RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"Pmars", "[", "t", "]"}], "]"}]}], "}"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"jupiterplotpoint", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", 
+      RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"Pjupiter", "[", "t", "]"}], "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"satumplotpoint", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", 
+      RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"Psatum", "[", "t", "]"}], "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"uranusplotplotpoint", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", 
+      RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"Puranus", "[", "t", "]"}], "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"neptuneplotpoint", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", 
+      RowBox[{"PointSize", "[", ".01", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"Pneptune", "[", "t", "]"}], "]"}]}], "}"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{"Manipulate", "[", "\n", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "sunplot", ",", "mercuryplot", ",", "venusplot", ",", "earthplot", ",", 
+       "marsplot", ",", "jupiterplot", ",", "satumplot", ",", "uranusplot", 
+       ",", "neptuneplot", ",", "\n", "      ", 
+       RowBox[{"mercuryplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"venusplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"earthplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"marsplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"jupiterplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"satumplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"uranusplotplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"neptuneplotpoint", "[", "t", "]"}]}], "}"}], ",", "\n", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"1.3", "*", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "Dneptune"}], ",", "Dneptune"}], "}"}]}], ",", 
+        RowBox[{"1.3", "*", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "Dneptune"}], ",", "Dneptune"}], "}"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "Dneptune"}], "/", "10"}], ",", 
+          RowBox[{"Dneptune", "/", "10"}]}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"ImageSize", "->", "Full"}], ",", "\n", 
+     RowBox[{"Axes", "->", "False"}], ",", 
+     RowBox[{"Boxed", "->", "False"}]}], "]"}], ",", "\n", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "1", ",", "tplot"}], "}"}]}], "]"}]}], "Code",
+ CellChangeTimes->{{3.7185027462695084`*^9, 3.7185029260951653`*^9}, {
+  3.7185029791978564`*^9, 3.7185030242587304`*^9}, {3.718503302080476*^9, 
+  3.7185033205628357`*^9}, {3.7185033674698787`*^9, 3.718503505088049*^9}, {
+  3.718503539588044*^9, 3.7185036931519775`*^9}, {3.718503769955772*^9, 
+  3.71850421452635*^9}, {3.718507026781082*^9, 3.7185070335465546`*^9}, {
+  3.7185070765917225`*^9, 3.718507096334448*^9}, {3.71850712703736*^9, 
+  3.718507485371877*^9}, {3.7185075810978975`*^9, 3.718507660785214*^9}, {
+  3.7185104916759343`*^9, 3.718510516412451*^9}, {3.718510756715353*^9, 
+  3.7185107914468565`*^9}},ExpressionUUID->"2953442c-a230-4428-8cb6-\
+344c5e1866e3"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 4.522461195999539*^8, Typeset`show$$ =
+     True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 1, 5.540493312*^9}}, Typeset`size$$ = {
+    1260., {92., 97.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$8107$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$8107$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Show[{$CellContext`sunplot, $CellContext`mercuryplot, \
+$CellContext`venusplot, $CellContext`earthplot, $CellContext`marsplot, \
+$CellContext`jupiterplot, $CellContext`satumplot, $CellContext`uranusplot, \
+$CellContext`neptuneplot, 
+         $CellContext`mercuryplotpoint[$CellContext`t$$], 
+         $CellContext`venusplotpoint[$CellContext`t$$], 
+         $CellContext`earthplotpoint[$CellContext`t$$], 
+         $CellContext`marsplotpoint[$CellContext`t$$], 
+         $CellContext`jupiterplotpoint[$CellContext`t$$], 
+         $CellContext`satumplotpoint[$CellContext`t$$], 
+         $CellContext`uranusplotplotpoint[$CellContext`t$$], 
+         $CellContext`neptuneplotpoint[$CellContext`t$$]}, 
+        PlotRange -> {
+         1.3 {-$CellContext`Dneptune, $CellContext`Dneptune}, 
+          1.3 {-$CellContext`Dneptune, $CellContext`Dneptune}, \
+{(-$CellContext`Dneptune)/10, $CellContext`Dneptune/10}}, ImageSize -> Full, 
+        Axes -> False, Boxed -> False], 
+      "Specifications" :> {{$CellContext`t$$, 1, 5.540493312*^9}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1311., {151., 158.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{
+  3.718510796986948*^9},ExpressionUUID->"020a269d-2fdd-47a7-a0a3-\
+ec662a029b0e"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Plotting earth", "Subsection",
+ CellChangeTimes->{{3.7185042571555624`*^9, 
+  3.7185042656450496`*^9}},ExpressionUUID->"203045de-2258-432d-9638-\
+395292c5512d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"tplot1", "=", 
+   RowBox[{"1", "*", "Tearth"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"sunplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Psun", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Red"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"mercuryplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Pmercury", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Orange"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"venusplot", ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Pvenus", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tplot1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Yellow"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"earthplot", ":=", 
+    RowBox[{"ParametricPlot3D", "[", 
+     RowBox[{
+      RowBox[{"Pearth", "[", "t", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "tplot1"}], "}"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"Thick", ",", "Blue"}], "}"}]}]}], "]"}]}], ";"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"marsplot", ":=", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Pmars", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Black"}], "}"}]}]}], "]"}]}], ";", "\n", 
+    RowBox[{"jupiterplot", ":=", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Pjupiter", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Gray"}], "}"}]}]}], "]"}]}], ";", "\n", 
+    RowBox[{"satumplot", ":=", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Psatum", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Purple"}], "}"}]}]}], "]"}]}], ";", "\n", 
+    RowBox[{"uranusplot", ":=", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Puranus", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Red"}], "}"}]}]}], "]"}]}], ";", "\n", 
+    RowBox[{"neptuneplot", ":=", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Pneptune", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Green"}], "}"}]}]}], "]"}]}], ";"}], 
+   "*)"}]}], "\n", 
+ RowBox[{"Manipulate", "[", "\n", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "sunplot", ",", "mercuryplot", ",", "venusplot", ",", "earthplot", ",", 
+       RowBox[{"mercuryplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"venusplotpoint", "[", "t", "]"}], ",", 
+       RowBox[{"earthplotpoint", "[", "t", "]"}]}], "}"}], ",", "\n", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"1.3", "*", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "Dearth"}], ",", "Dearth"}], "}"}]}], ",", 
+        RowBox[{"1.3", "*", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "Dearth"}], ",", "Dearth"}], "}"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "Dearth"}], "/", "10"}], ",", 
+          RowBox[{"Dearth", "/", "10"}]}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"ImageSize", "->", "Full"}], ",", 
+     RowBox[{"Boxed", "->", "False"}], ",", 
+     RowBox[{"Axes", "->", "False"}]}], "]"}], ",", "\n", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "1", ",", "tplot1"}], "}"}]}], "]"}]}], "Code",
+ CellChangeTimes->{{3.718504274461273*^9, 3.71850428794051*^9}, {
+  3.7185044806169367`*^9, 3.7185045295657406`*^9}, {3.718504789026598*^9, 
+  3.7185047966160517`*^9}, {3.718510916356986*^9, 3.7185109836722593`*^9}, {
+  3.7185111412381983`*^9, 3.7185111549799337`*^9}, {3.7185113515242357`*^9, 
+  3.718511356564454*^9}},ExpressionUUID->"b249da14-36fa-49b0-bf87-\
+391aa0f3c2af"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 2.574344565009471*^7, Typeset`show$$ =
+     True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 1, 3.0780518400000002`*^7}}, Typeset`size$$ = {
+    844., {29., 36.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$87921$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$87921$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Show[{$CellContext`sunplot, $CellContext`mercuryplot, \
+$CellContext`venusplot, $CellContext`earthplot, 
+         $CellContext`mercuryplotpoint[$CellContext`t$$], 
+         $CellContext`venusplotpoint[$CellContext`t$$], 
+         $CellContext`earthplotpoint[$CellContext`t$$]}, 
+        PlotRange -> {
+         1.3 {-$CellContext`Dearth, $CellContext`Dearth}, 
+          1.3 {-$CellContext`Dearth, $CellContext`Dearth}, \
+{(-$CellContext`Dearth)/10, $CellContext`Dearth/10}}, ImageSize -> Full, 
+        Boxed -> False, Axes -> False], 
+      "Specifications" :> {{$CellContext`t$$, 1, 3.0780518400000002`*^7}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{895., {89., 96.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{
+  3.7185113604420815`*^9},ExpressionUUID->"f6b9bb0e-db09-4517-93c9-\
+95e5ac4e8223"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["sun period plot ", "Subsection",
+ CellChangeTimes->{{3.718504826653753*^9, 
+  3.718504830783003*^9}},ExpressionUUID->"5536594d-2988-43d6-905f-\
+5909bc4f3582"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"Psun", "[", "t", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "tplot"}], "}"}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Thick", ",", "Red"}], "}"}]}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"ViewAngle", "\[Rule]", "All"}], ",", 
+   RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}]}], "]"}]], "Code",
+ CellChangeTimes->{{3.718504835411254*^9, 3.718504842450672*^9}, {
+  3.7185066356249723`*^9, 3.7185067746307354`*^9}, {3.7185068249477415`*^9, 
+  3.7185068965704527`*^9}},ExpressionUUID->"300195ba-344d-49cd-b431-\
+2c113cd0f456"],
+
+Cell[BoxData[
+ Graphics3DBox[{{}, {}, 
+   TagBox[
+    {RGBColor[1, 0, 0], Thickness[Large], Line3DBox[CompressedData["
+1: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
+MvEqxU9kpEwVphYHHX6namAwxsjs5fNMnLCckDtepQqD46oOqpUauOatYFI3
+lIl/Rb/9l2qI/hkQ1U2q1YDxWLqT50vifilwVD25oIp5N7upvAYN9N1tyed7
+lYlAncdDlXWq8EjKXWTt0cC87G6ntNeZIGUlTZhdVQX/9YTzD/9pYPyG5ZjX
+20ysuYyXVN9SRXAuJ0MihyYO1Lc58bzLxMbQXdF+xP7GGDV27YOoJmyd9jR3
+EvzoU29fcrMq6pKCNS8YaiJe6/1T8vtMdD+4f/zJHVVUTy2dCzuoiUY75Ud8
+48T92pC8ROtSxTNh7TAFLS0cW69hMviUiVD3xV1XXqjCqel0gi6HDqyche+s
+LmbiI6Ng549FVUz0qNu9ZzDEStjXFx3iWTBoNuVlkFUDd4UNe4GmIf7dKVLI
+kciCic6fuXY5NfwZ5fD28zdE9ErpdUdSFoaOrGRkKagRv1ftlYo9hogrYE9m
+lM1Cy7Nbr8WU1XBiv1rAtVwKdlpumr2knAU9saWHBzWJ+XVZQ15ewBhhWUo/
+FyhZSJTp/75uooY39GZnDgkD72TG1Lx8s3Bp+ONgfYAa2uYslt5tI9YIt+J7
+3/yzUCxVbL4SpAatmcCLolbAzeLDhSlBWZAzCU7ZsU8NxYXuCvaJwLHSgK23
+wrJwnCdqdDVCDdXi9vr6bwDDyQ8fw+OzQOpQIZ9NUINFauiDwWM06PWtXP5+
+PAs+5qbfe46poexDdP//Kq7zeCq37w/gCRnKHA2kbiHOIZ7nHCE5pw+OUKJk
+SCGRopQy5F7NHs+RqWQoUgklJLe6KTQoSt9IxNUcbqVQSBRl+O3fn+f92q+9
+1157rfN61qIXNhjokWMq7sbAKDR20+ObJkjuah337bYBfclmeef9GNy43vk+
+qdIEmX+oUQ6jNmhqHs9TfxgDP7Gqw5o7Jgj4rNfsNtcWbj2swoH6GHzdrSxq
+qzZBotGZqohNtsgI6P+5/2UM1ujlbZ35lMRpPm9Vx2tbUE72SksHYxD+/OMv
+007iMk9GznXZYpXi76t5P2OwR5D4Vb/LBK63jj9R+WmLpp6RYYXfMWhOlIyc
+88UEy47GxsiqiJBXPjKnW4LBXxeWn5w6YIJKhxWXWIhg5upVdEeJwWHhXAyO
+maDhfurYh3QR6p9X7frBZSBjljZ7ugYFNipr/vgZEfyyT+gmGTPYoRC+W2cW
+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
+      "]]},
+    Annotation[#, "Charting`Private`Tag$6460#1"]& ]},
+  Boxed->False,
+  DisplayFunction->Identity,
+  FaceGridsStyle->Automatic,
+  ImageSize->{461.1865236371257, 461.1865236371257},
+  ImageSizeRaw->Automatic,
+  Method->{},
+  PlotRange->{{0., 2.8886307508412465`*^6}, {0., 5.060822476376331*^7}, {0., 
+   1.3368758947656422`*^6}},
+  PlotRangePadding->{
+    Scaled[0.02], 
+    Scaled[0.02], 
+    Scaled[0.02]},
+  Ticks->{Automatic, Automatic, Automatic},
+  ViewAngle->All,
+  ViewPoint->{-0.10462042523047392`, -0.9665609834664126, -0.234124821121204},
+  ViewVertical->{-0.4482001945563887, 0.9961000709935786, 
+   3.1965418063698094`}]], "Output",
+ CellChangeTimes->{
+  3.7185048458718543`*^9, 3.718506128655416*^9, {3.7185066410613832`*^9, 
+   3.7185067751775923`*^9}, {3.718506827347783*^9, 3.7185068970467596`*^9}, 
+   3.718510483440293*^9},ExpressionUUID->"9c4b7667-9bea-4a72-8370-\
+b4482c0e1d14"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Earth period ", "Subsection",
+ CellChangeTimes->{{3.7185059064932685`*^9, 3.718505909664983*^9}, {
+  3.718505974192443*^9, 
+  3.7185059776459494`*^9}},ExpressionUUID->"c1f1166f-75bb-478a-adf6-\
+2d7321f61af9"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"S", "[", "tf_", "]"}], ":=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"Pearth", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "tf"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", "Red", "}"}]}], ",", "\n", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"1.3", "*", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "Dearth"}], ",", "Dearth"}], "}"}]}], ",", 
+        RowBox[{"1.3", "*", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "Dearth"}], ",", "Dearth"}], "}"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "Dearth"}], "/", "10"}], ",", 
+          RowBox[{"Dearth", "/", "10"}]}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+     RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+     RowBox[{"ViewPoint", "\[Rule]", "Above"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"line", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"Line", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Pearth", "[", 
+        RowBox[{"t", "*", "Tearth"}], "]"}], ",", 
+       RowBox[{"Pearth", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"t", "+", ".5"}], ")"}], "*", "Tearth"}], "]"}]}], "}"}], 
+     "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"S", "[", "t", "]"}], "}"}], ",", 
+     RowBox[{"line", "[", 
+      RowBox[{"t", "/", "Tearth"}], "]"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"t", ",", "Tearth"}], "}"}], ",", "1", ",", 
+     RowBox[{"99", "*", "Tearth"}]}], "}"}]}], "]"}]}], "Code",
+ CellChangeTimes->{
+  3.7185059998296437`*^9, {3.718506055081052*^9, 3.7185060695572004`*^9}, {
+   3.718506139909668*^9, 3.7185062520088806`*^9}, {3.7185062956785316`*^9, 
+   3.7185063404306393`*^9}, {3.7185063804186354`*^9, 
+   3.7185064960281677`*^9}, {3.7185065286041827`*^9, 3.718506537209564*^9}, {
+   3.718506573585112*^9, 3.7185065784426355`*^9}, {3.718511513286831*^9, 
+   3.7185117527622705`*^9}, {3.718511949290407*^9, 
+   3.7185119537366776`*^9}},ExpressionUUID->"84eaea85-f315-452a-ad81-\
+4141f2ed29da"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 3.0472713216000004`*^9, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`t$$], 3.0780518400000002`*^7}, 1, 
+      3.0472713216000004`*^9}}, Typeset`size$$ = {576., {19., 25.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$131892$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`t$$ = 3.0780518400000002`*^7}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$131892$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[{
+         $CellContext`S[$CellContext`t$$]}, 
+        $CellContext`line[$CellContext`t$$/$CellContext`Tearth]], 
+      "Specifications" :> {{{$CellContext`t$$, 3.0780518400000002`*^7}, 1, 
+         3.0472713216000004`*^9}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{627., {65., 72.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{
+  3.7185119725341606`*^9},ExpressionUUID->"78af3f11-da46-45e3-b96b-\
+57e0ef1f8968"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 1., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`t$$], 3.0780518400000002`*^7}, 1, 3.07805184*^9}}, 
+    Typeset`size$$ = {576., {285., 291.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$83753$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`t$$ = 3.0780518400000002`*^7}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$83753$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> $CellContext`S[$CellContext`t$$], 
+      "Specifications" :> {{{$CellContext`t$$, 3.0780518400000002`*^7}, 1, 
+         3.07805184*^9}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{627., {331., 338.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{
+  3.7185114678182*^9},ExpressionUUID->"fcb46cb7-f89b-4170-a4e4-a2d0a8073124"],
+
+Cell[BoxData["*"], "Input",
+ CellChangeTimes->{
+  3.7185112913937726`*^9},ExpressionUUID->"23962f14-3db1-4e99-a634-\
+52e7a44638f4"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1024, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 412, 11, 69, "Code",ExpressionUUID->"dcb2d4cc-a7f9-4328-bee3-488bfaf016a8"],
+Cell[CellGroupData[{
+Cell[995, 35, 165, 3, 67, "Section",ExpressionUUID->"77ae7aef-ea20-48fd-9e8b-784f695ab33b"],
+Cell[CellGroupData[{
+Cell[1185, 42, 169, 3, 53, "Subsection",ExpressionUUID->"7632170e-64b8-44f4-adf6-f71fb0532ba8"],
+Cell[1357, 47, 6418, 203, 1148, "Code",ExpressionUUID->"871ea8a3-11b2-4dc0-9530-4c70b6cb8835"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7812, 255, 228, 4, 37, "Subsection",ExpressionUUID->"950a6dcb-7419-4818-bf6d-a0d65055b9d0"],
+Cell[CellGroupData[{
+Cell[8065, 263, 43533, 1103, 1665, "Code",ExpressionUUID->"f21fb5b7-9cfe-4555-8f67-99013c8e9f56"],
+Cell[51601, 1368, 458, 10, 21, "Message",ExpressionUUID->"9977e9bc-4e89-4952-9cc2-ffb6638fd500"],
+Cell[52062, 1380, 136, 3, 32, "Output",ExpressionUUID->"ee80708a-6c37-4da5-b4cb-4ed7324d6ece"],
+Cell[52201, 1385, 460, 10, 21, "Message",ExpressionUUID->"fbf0d074-a42e-43b5-8db8-3d106cffcb5a"],
+Cell[52664, 1397, 136, 3, 32, "Output",ExpressionUUID->"102a24ab-246a-455c-acc1-20b188695b12"],
+Cell[52803, 1402, 458, 10, 21, "Message",ExpressionUUID->"8460ac09-bf04-48a5-8c63-4163e12ef3b3"],
+Cell[53264, 1414, 138, 3, 32, "Output",ExpressionUUID->"31a262fc-afa8-41a5-94c6-f2a7845d8720"],
+Cell[53405, 1419, 460, 10, 21, "Message",ExpressionUUID->"b402bf1e-6014-4b4e-a244-ea2b52c602f5"],
+Cell[53868, 1431, 138, 3, 32, "Output",ExpressionUUID->"3d22e972-afcb-49f2-a67a-2d3449d4450e"],
+Cell[54009, 1436, 459, 10, 21, "Message",ExpressionUUID->"39c9bd18-74d8-40d9-9ed8-f83cc3b29223"],
+Cell[54471, 1448, 138, 3, 32, "Output",ExpressionUUID->"94a68b79-bdc6-44e5-9e60-0a06132e1f40"],
+Cell[54612, 1453, 462, 10, 21, "Message",ExpressionUUID->"ed0d57b5-47d4-47ee-9a20-5ecbdf1182a9"],
+Cell[55077, 1465, 138, 3, 32, "Output",ExpressionUUID->"659e3afb-3435-46f7-a54c-fb53bdd75b22"],
+Cell[55218, 1470, 461, 10, 21, "Message",ExpressionUUID->"1bb1241a-4619-4530-a3e8-8e68510c1bfd"],
+Cell[55682, 1482, 138, 3, 32, "Output",ExpressionUUID->"14d7a8c2-10fe-462b-9161-6c9487669dc5"],
+Cell[55823, 1487, 460, 10, 21, "Message",ExpressionUUID->"0da39a64-6e28-4f4d-bdc0-5265b6f0528c"],
+Cell[56286, 1499, 138, 3, 32, "Output",ExpressionUUID->"929b810d-24fa-487c-99f1-9a2073fcea42"],
+Cell[56427, 1504, 462, 10, 21, "Message",ExpressionUUID->"c54ac632-6a72-4af4-b317-44004a90b56e"],
+Cell[56892, 1516, 138, 3, 32, "Output",ExpressionUUID->"4eb23e92-e771-4e5c-a87f-7f994cba7acd"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[57079, 1525, 252, 5, 37, "Subsection",ExpressionUUID->"a0479aeb-d7f6-40bf-94b0-89d5248e5a53",
+ InitializationCell->True],
+Cell[57334, 1532, 2164, 60, 213, "Code",ExpressionUUID->"70c055ad-0856-4d19-94ad-0abd79ac9cd4"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[59535, 1597, 224, 4, 37, "Subsection",ExpressionUUID->"a5108720-0fed-4583-a350-5fcef3a1c3b0"],
+Cell[59762, 1603, 8104, 223, 483, "Code",ExpressionUUID->"2953442c-a230-4428-8cb6-344c5e1866e3"],
+Cell[67869, 1828, 2603, 51, 324, InheritFromParent,ExpressionUUID->"020a269d-2fdd-47a7-a0a3-ec662a029b0e"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[70509, 1884, 166, 3, 37, "Subsection",ExpressionUUID->"203045de-2258-432d-9638-395292c5512d"],
+Cell[70678, 1889, 4840, 129, 285, "Code",ExpressionUUID->"b249da14-36fa-49b0-bf87-391aa0f3c2af"],
+Cell[75521, 2020, 2186, 44, 200, InheritFromParent,ExpressionUUID->"f6b9bb0e-db09-4517-93c9-95e5ac4e8223"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[77744, 2069, 164, 3, 53, "Subsection",ExpressionUUID->"5536594d-2988-43d6-905f-5909bc4f3582"],
+Cell[CellGroupData[{
+Cell[77933, 2076, 721, 16, 50, "Code",ExpressionUUID->"300195ba-344d-49cd-b431-2c113cd0f456"],
+Cell[78657, 2094, 27729, 465, 478, "Output",ExpressionUUID->"9c4b7667-9bea-4a72-8370-b4482c0e1d14"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[106435, 2565, 214, 4, 53, "Subsection",ExpressionUUID->"c1f1166f-75bb-478a-adf6-2d7321f61af9"],
+Cell[106652, 2571, 2431, 66, 105, "Code",ExpressionUUID->"84eaea85-f315-452a-ad81-4141f2ed29da"],
+Cell[109086, 2639, 1856, 38, 152, InheritFromParent,ExpressionUUID->"78af3f11-da46-45e3-b96b-57e0ef1f8968"],
+Cell[110945, 2679, 1728, 35, 684, InheritFromParent,ExpressionUUID->"fcb46cb7-f89b-4170-a4e4-a2d0a8073124"],
+Cell[112676, 2716, 131, 3, 28, "Input",ExpressionUUID->"23962f14-3db1-4e99-a634-52e7a44638f4"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
